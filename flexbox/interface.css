@@ -1,0 +1,42 @@
+body{
+    background-color: silver;
+}
+
+header{
+    display: flex;
+    text-align: center;
+    color: white;
+    background-color: rgb(255, 60, 0);
+    margin: 0%;
+    padding: 0%;
+    text-align: center;
+}
+
+main{
+    display: flex;
+    text-align: center;
+}
+
+.case img{
+    display: flex;
+    width: 100%;
+}
+.case h2{
+    color: rgb(255, 60, 0);
+}
+
+.case{
+    display: flex;
+    flex-wrap: wrap;
+    max-width: 100%;
+    width: 250px;
+    margin: 2%;
+    padding: 1%;
+    background-color: white;
+    text-align: justify;
+}
+p{
+    margin: 2%;
+    color: gray;
+}
+
