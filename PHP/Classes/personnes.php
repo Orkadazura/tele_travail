@@ -18,7 +18,9 @@ class personne{
 
     function __destruct()
     {
-        var_dump("Destroying".__CLASS__);
+        echo "<script type=\"text/javascript\">alert('La personne nommée
+        $this->prenom $this->nom \\n est supprimée de vos
+        contacts')</script>";
     }
 
     function getPersonne($nom, $prenom, $adresse)
