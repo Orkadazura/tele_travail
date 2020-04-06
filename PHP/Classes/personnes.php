@@ -31,14 +31,12 @@ class personne{
 
     function setAdresse($adresse)
     {
-        if($this->adresse === $adresse){
-            
-        }
+        $this->adresse = $adresse;
     }
 
     function setEmail($email)
     {
-
+        $this->email = $email;
     }
 }
 
