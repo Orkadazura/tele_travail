@@ -4,16 +4,16 @@ namespace personnes;
 
 class employe extends personne
 {
-    protected $numEmp;
+    protected $personne = [];
 
     function __construct($numEmp)
     {
         $this->numEmp = $numEmp;
     }
 
-    function getEmploye()
+    function getEmploye(): array
     {
-        
+        return $this->$personne;
     }
 
     function getAdresse()

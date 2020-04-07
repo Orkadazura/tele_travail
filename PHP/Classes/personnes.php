@@ -25,8 +25,8 @@ class personne{
 
     function getPersonne($nom, $prenom, $adresse)
     {
-        $array = [$nom, $prenom, $adresse];
-        var_dump($array);
+        $personne = [$nom, $prenom, $adresse];
+        return $personne;
     }
 
     function setAdresse($adresse)
