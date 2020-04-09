@@ -13,7 +13,7 @@ class employe extends personne
 
     function getEmploye(): array
     {
-        return $this->$personne;
+        return $this->personne;
     }
 
     function getAdresse()

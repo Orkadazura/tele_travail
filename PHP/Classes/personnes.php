@@ -25,8 +25,8 @@ class personne{
 
     function getPersonne($nom, $prenom, $adresse)
     {
-        $personne = [$nom, $prenom, $adresse];
-        return $personne;
+        $this->personne = [$nom, $prenom, $adresse];
+        return $this->personne;
     }
 
     function setAdresse($adresse)
