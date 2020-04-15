@@ -16,19 +16,19 @@ class employe extends personne
         return $this->personne;
     }
 
-    function getAdresse()
+    function getAdresse($adresse)
     {
-
+        return $this->$adresse;
     }
 
-    function getNum()
+    function getNum($email)
     {
-
+        return $this->$email;
     }
 
-    function setNum()
+    function setNum($email)
     {
-
+        $this->email = $email;
     }
 
 }
