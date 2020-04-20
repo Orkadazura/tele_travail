@@ -16,29 +16,46 @@
 
     <h1>Formulaire</h1>
     <br><br>
-    <form action="traitment.php" method="get">
+    <form action="<?php echo $_SERVER["PHP_SELF"]; ?>" method="get">
         <div class="form-group row">
             <label class="col-2"  for="">Capital empruté :</label>
-            <input class="col-3"  type="text" id="username" name="nom" value=""required>
+            <input class="col-3"  type="text" id="K" name="K" value=""required>
         </div>
 
         <div class="form-group row">        
             <label class="col-2"  for="">Taux intérêt en % :</label>
-            <input class="col-3"  type="text" id="username" name="nom" value=""required>
+            <input class="col-3"  type="text" id="ta" name="ta" value=""required>
         </div>
 
         <div class="form-group row">      
             <label class="col-2"  for="">Durée de remboursement en nb année :</label>
-            <input class="col-3"  type="text" id="username" name="nom" value=""required>
+            <input class="col-3"  type="text" id="an" name="an" value=""required>
         </div>
         <br><br>
         <div id="btn">
             <button type="submit">Valider</button>
             <label class="col-2"  for="">Mensualité :</label>
-            <input class="col-3"  type="text" id="username" name="nom" value=""required>
+            <input class="col-3"  type="text" id="username" name="nom" value="">
         </div>
     </form>
     
 </body>
+
+<?php
+
+function calculeMensualiter($ta, $K, $an)
+{
+    $tm = $ta/12;
+    $n = $an*12;
+    $Q = (1- pow((1+$tm),-$n));
+    $mensualiter=($K*$tm)/$Q;
+    return $mensualiter;
+}
+
+
+
+?>
+
+
 </html> 
 
