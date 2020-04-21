@@ -14,28 +14,28 @@
 </head>
 <body>
 
-    <h1>Formulaire</h1>
+    <h1>Simulation</h1>
     <br><br>
-    <form action="<?php echo $_SERVER["PHP_SELF"]; ?>" method="get">
+    <form action="<?php echo $_SERVER["PHP_SELF"]; ?>" method="post">
         <div class="form-group row">
             <label class="col-2"  for="">Capital empruté :</label>
-            <input class="col-3"  type="text" id="K" name="K" value=""required>
+            <input class="col-3"  type="text" id="K" name="K" value="<?php echo(!empty($_POST["K"]))? $_POST["K"]: ""  ?>" required>
         </div>
 
         <div class="form-group row">        
             <label class="col-2"  for="">Taux intérêt en % :</label>
-            <input class="col-3"  type="text" id="ta" name="ta" value=""required>
+            <input class="col-3"  type="text" id="ta" name="ta" value="<?php echo(!empty($_POST["ta"]))? $_POST["ta"]: ""  ?>" required>
         </div>
 
         <div class="form-group row">      
             <label class="col-2"  for="">Durée de remboursement en nb année :</label>
-            <input class="col-3"  type="text" id="an" name="an" value=""required>
+            <input class="col-3"  type="text" id="an" name="an" value="<?php echo(!empty($_POST["an"]))? $_POST["an"]: ""  ?>" required>
         </div>
         <br><br>
         <div id="btn">
             <button type="submit">Valider</button>
             <label class="col-2"  for="">Mensualité :</label>
-            <input class="col-3"  type="text" id="username" name="nom" value="">
+            <input class="col-3"  type="text" value="<?php echo(!empty($result)) ?>">
         </div>
     </form>
     
@@ -43,7 +43,7 @@
 
 <?php
 
-function calculeMensualiter($ta, $K, $an)
+function calculeMensualiter($K, $ta, $an)
 {
     $tm = $ta/12;
     $n = $an*12;
@@ -51,7 +51,11 @@ function calculeMensualiter($ta, $K, $an)
     $mensualiter=($K*$tm)/$Q;
     return $mensualiter;
 }
-
+$result="";
+if(isset($_GET["K"]) && isset($_GET["ta"]) && isset($_GET["an"]))
+{    
+    return $result = calculeMensualiter($_GET["K"],$_GET["ta"],$_GET["an"]);
+}
 
 
 ?>
