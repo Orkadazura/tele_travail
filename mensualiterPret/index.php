@@ -14,51 +14,65 @@
 </head>
 <body>
 
+<?php
+
+require_once ("Financier.php");
+$result=0;
+if(isset($_POST["capital"]) && isset($_POST["tauxAnuel"]) && isset($_POST["annees"]))
+{    
+    $monFinancier = new Financier($_POST["capital"], $_POST["tauxAnuel"], $_POST["annees"]);
+    $result = $monFinancier->calculeMensualiter();
+}
+else
+{
+    echo "Le calcule de la mensualitée est impossible.";
+}
+
+/* Voir la classe Financier mais le code peut fonctionner si décommenté
+
+function calculeMensualiter($capital, $tauxAnnuel, $annees)
+{
+    $tauxMensuel = $tauxAnnuel/12;
+    $nbMois = $annees*12;
+    $quotient = (1 - pow((1+$tauxMensuel),-$nbMois));
+    $mensualiter=($capital*$tauxMensuel)/$quotient;
+    return $mensualiter;
+}
+$result="";
+if(isset($_POST["capital"]) && isset($_POST["tauxAnnuel"]) && isset($_POST["annees"]))
+{    
+    return $result = calculeMensualiter($_POST["capital"],$_POST["tauxAnnuel"],$_POST["annees"]);
+}*/
+
+?>
+
     <h1>Simulation</h1>
     <br><br>
     <form action="<?php echo $_SERVER["PHP_SELF"]; ?>" method="post">
+    <!--$_SERVER["PHP_SELF"]= renvoi sur la même page. (remplace le nom de la page)-->
         <div class="form-group row">
             <label class="col-2"  for="">Capital empruté :</label>
-            <input class="col-3"  type="text" id="K" name="K" value="<?php echo(!empty($_POST["K"]))? $_POST["K"]: ""  ?>" required>
+            <input class="col-3"  type="text" id="capital" name="capital" value="<?php echo(!empty($_POST["capital"]))? $_POST["capital"]: "" ?>" required>
         </div>
 
         <div class="form-group row">        
             <label class="col-2"  for="">Taux intérêt en % :</label>
-            <input class="col-3"  type="text" id="ta" name="ta" value="<?php echo(!empty($_POST["ta"]))? $_POST["ta"]: ""  ?>" required>
+            <input class="col-3"  type="text" id="tauxAnuel" name="tauxAnuel" value="<?php echo(!empty($_POST["tauxAnuel"]))? $_POST["tauxAnuel"]: "" ?>" required>
         </div>
 
         <div class="form-group row">      
             <label class="col-2"  for="">Durée de remboursement en nb année :</label>
-            <input class="col-3"  type="text" id="an" name="an" value="<?php echo(!empty($_POST["an"]))? $_POST["an"]: ""  ?>" required>
+            <input class="col-3"  type="text" id="annees" name="annees" value="<?php echo(!empty($_POST["annees"]))? $_POST["annees"]: "" ?>" required>
         </div>
         <br><br>
         <div id="btn">
             <button type="submit">Valider</button>
             <label class="col-2"  for="">Mensualité :</label>
-            <input class="col-3"  type="text" value="<?php echo(!empty($result)) ?>">
+            <input class="col-3"  type="text" id="result" name="result"  value="<?php echo(!empty($result))? round($result,2)." €" : "NaN"  ?>">
         </div>
     </form>
     
 </body>
-
-<?php
-
-function calculeMensualiter($K, $ta, $an)
-{
-    $tm = $ta/12;
-    $n = $an*12;
-    $Q = (1- pow((1+$tm),-$n));
-    $mensualiter=($K*$tm)/$Q;
-    return $mensualiter;
-}
-$result="";
-if(isset($_GET["K"]) && isset($_GET["ta"]) && isset($_GET["an"]))
-{    
-    return $result = calculeMensualiter($_GET["K"],$_GET["ta"],$_GET["an"]);
-}
-
-
-?>
 
 
 </html> 
