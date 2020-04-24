@@ -14,37 +14,39 @@
 </head>
 <body>
 
-<?php
+    <?php
 
-require_once ("Financier.php");
-$result=0;
-if(isset($_POST["capital"]) && isset($_POST["tauxAnuel"]) && isset($_POST["annees"]))
-{    
-    $monFinancier = new Financier($_POST["capital"], $_POST["tauxAnuel"], $_POST["annees"]);
-    $result = $monFinancier->calculeMensualiter();
-}
-else
-{
-    echo "Le calcule de la mensualitée est impossible.";
-}
+    require_once ("Financier.php");
 
-/* Voir la classe Financier mais le code peut fonctionner si décommenté
+    $result=0;
 
-function calculeMensualiter($capital, $tauxAnnuel, $annees)
-{
-    $tauxMensuel = $tauxAnnuel/12;
-    $nbMois = $annees*12;
-    $quotient = (1 - pow((1+$tauxMensuel),-$nbMois));
-    $mensualiter=($capital*$tauxMensuel)/$quotient;
-    return $mensualiter;
-}
-$result="";
-if(isset($_POST["capital"]) && isset($_POST["tauxAnnuel"]) && isset($_POST["annees"]))
-{    
-    return $result = calculeMensualiter($_POST["capital"],$_POST["tauxAnnuel"],$_POST["annees"]);
-}*/
+    if(isset($_POST["capital"]) && isset($_POST["tauxAnuel"]) && isset($_POST["annees"]))
+    {    
+        $monFinancier = new Financier($_POST["capital"], $_POST["tauxAnuel"], $_POST["annees"]);
+        $result = $monFinancier->calculeMensualiter();
+    }
+    else
+    {
+        echo "Le calcule de la mensualitée est impossible.";
+    }
 
-?>
+    /* Voir la classe Financier mais le code peut fonctionner si décommenté
+
+    function calculeMensualiter($capital, $tauxAnnuel, $annees)
+    {
+        $tauxMensuel = $tauxAnnuel/12;
+        $nbMois = $annees*12;
+        $quotient = (1 - pow((1+$tauxMensuel),-$nbMois));
+        $mensualiter=($capital*$tauxMensuel)/$quotient;
+        return $mensualiter;
+    }
+    $result="";
+    if(isset($_POST["capital"]) && isset($_POST["tauxAnnuel"]) && isset($_POST["annees"]))
+    {    
+        return $result = calculeMensualiter($_POST["capital"],$_POST["tauxAnnuel"],$_POST["annees"]);
+    }*/
+
+    ?>
 
     <h1>Simulation</h1>
     <br><br>
@@ -68,12 +70,27 @@ if(isset($_POST["capital"]) && isset($_POST["tauxAnnuel"]) && isset($_POST["anne
         <div id="btn">
             <button type="submit">Valider</button>
             <label class="col-2"  for="">Mensualité :</label>
-            <input class="col-3"  type="text" id="result" name="result"  value="<?php echo(!empty($result))? round($result,2)." €" : "NaN"  ?>">
+            <input class="col-3"  type="text" id="result" name="result"  value="<?php echo(!empty($result))? round($result,2)." €" : "NaN"  ?>" disabled>
         </div>
+        <div class="form-group form-check">
+            <label class="form-check-label">
+            <input class="form-check-input" type="checkbox">Tableau d'amortissement.
+        </label>
+    </div>
     </form>
+    <?php 
+    require_once("financier.php");
     
-</body>
+    $res=0;
 
+    if(isset($_POST["capital"]) && isset($_POST["tauxAnuel"]) && isset($_POST["annees"]))
+    {
+        $monfinancier=new financier($_POST["capital"], $_POST["tauxAnuel"], $_POST["annees"]);
+        $monfinancier->afficherTableau();
+    }
+    
+    ?>    
+</body>
 
 </html> 
 
