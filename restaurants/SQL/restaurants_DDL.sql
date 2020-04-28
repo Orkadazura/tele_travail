@@ -10,7 +10,7 @@ CREATE TABLE restaurants(
     id INT PRIMARY KEY AUTO_INCREMENT, 
     nom TEXT NOT NULL, 
     adresse TEXT NOT NULL, 
-    prix DECIMAL NOT NULL, 
+    prix DECIMAL(8,2) NOT NULL, 
     commentaire TEXT NOT NULL, 
     note DOUBLE NOT NULL, 
     visite DATE NOT NULL 
