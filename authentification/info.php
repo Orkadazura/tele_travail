@@ -10,8 +10,6 @@ else
 	echo "Erreur vous devez recommencer!! ";
 }
 
-
-
 ?>
-
+<a href="deco.php">Se déconecter</a>
 

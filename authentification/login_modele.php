@@ -26,13 +26,19 @@
  session_start();
   //include ( "db/utilisateurs.php");
 include( "db/utilisateur.php"); 
- 
+$db = new PDO('mysql:host=127.0.0.1;dbname=guide2','root', ''); 
+
+$selectMessages = $db->prepare('SELECT * FROM utilisateurs');
+$selectMessages->setFetchMode(PDO::FETCH_ASSOC);
+$selectMessages->execute();
+echo var_dump($selectMessages->fetchAll());
+
 if(isset($_POST["identifiant"]) && isset($_POST["pass_user"]))
 {
 	$chaine=0;
 	foreach ($tabUtilisateurs as $cle => $val) 
 	{
-		if($_POST["identifiant"]==$cle && $_POST["pass_user"]==$val)
+		if($_POST["identifiant"]==$cle && password_verify(["pass_user"],$val)==true)
 		{
 			$chaine=$cle;
 			echo 'Clé:'.$cle.', valeur:'.$val.'<br />';	
